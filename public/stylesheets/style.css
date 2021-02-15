@@ -1,0 +1,39 @@
+.content {
+  width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.addText {
+  width: 80%;
+  height: 2rem;
+  margin: 1rem;
+}
+
+.addBtn {
+  width: 30%;
+  margin: 1rem;
+}
+
+.todoList {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+
+.todo {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid;
+}
+
+.todoText {
+  display: inline-block;
+  width: 80%;
+  margin: 0;
+}
+
+.deleteBtn {
+  display: inline-block;
+  width: 20%;
+}
