@@ -9,6 +9,7 @@ var usersRouter = require("./routes/users");
 const getTodosRoutor = require("./routes/getTodos");
 const addRoutor = require("./routes/add");
 const deleteRoutor = require("./routes/delete");
+const loginRouter = require("./routes/");
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.get("/gettodos", getTodosRoutor);
+app.get("/login",loginRouter);
 app.post("/add", addRoutor);
 app.post("/delete/:todoid", deleteRoutor);
 
