@@ -13,6 +13,7 @@ const deleteRoutor = require("./routes/delete");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const topRouter = require("./routes/top");
+const signupRouter = require("./routes/signup");
 
 var app = express();
 
@@ -36,23 +37,24 @@ app.use(
       maxage: 1000 * 60 * 30, //セッションの消滅時間
     },
   })
-  );
-  app.use((req,res,next) => {
-    if(req.session.userId === undefined){
-      res.locals.email = "Guest";
-      res.locals.isLoggedIn = false;
-    }
-    else {
-      res.locals.email = req.session.email;
-      res.locals.isLoggedIn = true; 
-    }
-    next();
-  });
-  
-app.use("/",topRouter);
+);
+
+app.use((req, res, next) => {
+  if (req.session.userId === undefined) {
+    res.locals.username = "Guest";
+    res.locals.isLoggedIn = false;
+  } else {
+    res.locals.username = req.session.username;
+    res.locals.isLoggedIn = true;
+  }
+  next();
+});
+
+app.use("/", topRouter);
 app.use("/index", indexRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
+app.use("/signup", signupRouter);
 app.use("/users", usersRouter);
 
 app.get("/gettodos", getTodosRoutor);

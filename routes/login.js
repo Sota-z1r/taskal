@@ -24,7 +24,8 @@ router.post("/", (req, res, next) => {
         console.log("ログイン成功！");
         req.session.userId = results[0].id;
         req.session.email = results[0].email;
-        res.locals.email = req.session.email;
+        req.session.username = results[0].username;
+        res.locals.username = req.session.username;
         res.locals.isLoggedIn = true;
         res.render("index");
       } else {

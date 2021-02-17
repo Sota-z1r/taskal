@@ -131,6 +131,16 @@ body{
   outline: none;
 }
 
+li {
+  list-style-type: none;
+  /* text-align: center; */
+}
+
+a {
+  text-decoration: none;
+  color: #1a73e8;
+}
+
 ::-webkit-input-placeholder{
    color: rgba(255,255,255,0.6);
 }
