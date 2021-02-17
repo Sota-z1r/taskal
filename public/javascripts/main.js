@@ -36,13 +36,6 @@ const printTodos = function (todos) {
     p.innerHTML = todoText;
     p.className = "todoText";
     li.appendChild(p);
-    // deletformを作る
-    const deleteform = document.createElement("form");
-    deleteform.className = "deleteBtn";
-    deleteform.action = "/delete/";
-    deleteform.method = "POST";
-    deleteform.id = "deleteForm";
-    li.appendChild(deleteform);
     // transformを作る
     const transform = document.createElement("form");
     transform.className = "transBtn";
@@ -50,6 +43,13 @@ const printTodos = function (todos) {
     transform.method = "POST";
     transform.id = "transForm_1to2";
     li.appendChild(transform);
+    // deletformを作る
+    const deleteform = document.createElement("form");
+    deleteform.className = "deleteBtn";
+    deleteform.action = "/delete/";
+    deleteform.method = "POST";
+    deleteform.id = "deleteForm";
+    li.appendChild(deleteform);
     // deleteBtnを作る
     const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "delete";
@@ -81,13 +81,6 @@ const printDoings = function (doings) {
     p.innerHTML = doingText;
     p.className = "doingText";
     li.appendChild(p);
-    // deletformを作る
-    const deleteform = document.createElement("form");
-    deleteform.className = "deleteBtn";
-    deleteform.action = "/delete/";
-    deleteform.method = "POST";
-    deleteform.id = "deleteForm";
-    li.appendChild(deleteform);
     // transformを作る
     const transform = document.createElement("form");
     transform.className = "transBtn";
@@ -95,6 +88,13 @@ const printDoings = function (doings) {
     transform.method = "POST";
     transform.id = "transForm_2to3";
     li.appendChild(transform);
+    // deletformを作る
+    const deleteform = document.createElement("form");
+    deleteform.className = "deleteBtn";
+    deleteform.action = "/delete/";
+    deleteform.method = "POST";
+    deleteform.id = "deleteForm";
+    li.appendChild(deleteform);
     // deleteBtnを作る
     const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "delete";
