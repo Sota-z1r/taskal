@@ -20,7 +20,7 @@ function getTodos(sql) {
 }
 
 router.get("/gettodos", async function (req, res, next) {
-  const sql = 'SELECT * FROM todos WHERE state = "1";';
+  const sql = 'SELECT * FROM todos WHERE state != "0";';
   const todos = await getTodos(sql);
   res.json(todos);
 });

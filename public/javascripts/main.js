@@ -8,7 +8,17 @@ const getTodos = function () {
   request.send();
   request.onload = function () {
     const todos = request.response;
-    printTodos(todos);
+    const state_1 = [];
+    const state_2 = [];
+    const state_3 = [];
+    todos.forEach((todos) => {
+      if (todos.state == 1) state_1.push(todos);
+      if (todos.state == 2) state_2.push(todos);
+      if (todos.state == 3) state_3.push(todos);
+    });
+    printTodos(state_1);
+    printDoings(state_2);
+    printDones(state_3);
   };
 };
 
@@ -38,7 +48,7 @@ const printTodos = function (todos) {
     transform.className = "transBtn";
     transform.action = "/transDoing/";
     transform.method = "POST";
-    transform.id = "transForm";
+    transform.id = "transForm_1to2";
     li.appendChild(transform);
     // deleteBtnを作る
     const deleteBtn = document.createElement("button");
@@ -60,8 +70,8 @@ const printTodos = function (todos) {
 const printDoings = function (doings) {
   const doingList = document.getElementById("doingList");
   doings.forEach((doing) => {
-    const doingId = doing.doing_id;
-    const doingText = doing.doing;
+    const doingId = doing.todo_id;
+    const doingText = doing.todo;
     // liを作る
     const li = document.createElement("li");
     li.className = "doing";
@@ -71,37 +81,65 @@ const printDoings = function (doings) {
     p.innerHTML = doingText;
     p.className = "doingText";
     li.appendChild(p);
+    // deletformを作る
+    const deleteform = document.createElement("form");
+    deleteform.className = "deleteBtn";
+    deleteform.action = "/delete/";
+    deleteform.method = "POST";
+    deleteform.id = "deleteForm";
+    li.appendChild(deleteform);
+    // transformを作る
+    const transform = document.createElement("form");
+    transform.className = "transBtn";
+    transform.action = "/transDone/";
+    transform.method = "POST";
+    transform.id = "transForm_2to3";
+    li.appendChild(transform);
     // deleteBtnを作る
     const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "delete";
     deleteBtn.id = "deleteBtn";
     deleteBtn.className = "deleteBtn";
     deleteBtn.setAttribute("onclick", `deleteTodo(${doingId})`);
-    li.appendChild(deleteBtn);
+    deleteform.appendChild(deleteBtn);
+    // doneBtnをつくる
+    const doneBtn = document.createElement("button");
+    doneBtn.innerHTML = "done";
+    doneBtn.id = "doneBtn";
+    doneBtn.className = "doneBtn";
+    doneBtn.setAttribute("onclick", `transDone(${doingId})`);
+    transform.appendChild(doneBtn);
   });
 };
 
-const printDone = function (doings) {
-  const doingList = document.getElementById("doneList");
-  doings.forEach((doing) => {
-    const doingId = doing.doing_id;
-    const doingText = doing.doing;
+const printDones = function (dones) {
+  const doneList = document.getElementById("doneList");
+  dones.forEach((done) => {
+    const doneId = done.todo_id;
+    const doneText = done.todo;
     // liを作る
     const li = document.createElement("li");
-    li.className = "doing";
-    doingList.appendChild(li);
-    // doingの内容を入れるpタグを作る
+    li.className = "done";
+    doneList.appendChild(li);
+    // doneの内容を入れるpタグを作る
     const p = document.createElement("p");
-    p.innerHTML = doingText;
-    p.className = "doingText";
+    p.innerHTML = doneText;
+    p.className = "doneText";
     li.appendChild(p);
+    // deletformを作る
+    const deleteform = document.createElement("form");
+    deleteform.className = "deleteBtn";
+    deleteform.action = "/delete/";
+    deleteform.method = "POST";
+    deleteform.id = "deleteForm";
+    li.appendChild(deleteform);
     // deleteBtnを作る
     const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "delete";
     deleteBtn.id = "deleteBtn";
     deleteBtn.className = "deleteBtn";
-    deleteBtn.setAttribute("onclick", `deleteTodo(${doingId})`);
-    li.appendChild(deleteBtn);
+    deleteBtn.setAttribute("onclick", `deleteTodo(${doneId})`);
+    deleteform.appendChild(deleteBtn);
   });
 };
 
@@ -112,7 +150,13 @@ const deleteTodo = function (todoId) {
 };
 
 const transDoing = function (todoId) {
-  const form = document.getElementById("transForm");
+  const form = document.getElementById("transForm_1to2");
+  form.action = form.action + todoId;
+  form.submit();
+};
+
+const transDone = function (todoId) {
+  const form = document.getElementById("transForm_2to3");
   form.action = form.action + todoId;
   form.submit();
 };
