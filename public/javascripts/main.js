@@ -111,7 +111,7 @@ const deleteTodo = function (todoId) {
   form.submit();
 };
 
-const transDoing = function (todoID) {
+const transDoing = function (todoId) {
   const form = document.getElementById("transForm");
   form.action = form.action + todoId;
   form.submit();
