@@ -27,8 +27,8 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.get("/gettodos", getTodosRoutor);
 app.post("/add", addRoutor);
-app.post("/delete/:todoid", deleteRoutor);
 app.post("/transDoing/:todoid", transRoutor);
+app.post("/delete/:todoid", deleteRoutor);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
