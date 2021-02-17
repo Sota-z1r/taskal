@@ -49,7 +49,7 @@ app.use(
     next();
   });
   
-app.use("/top",topRouter);
+app.use("/",topRouter);
 app.use("/index", indexRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
