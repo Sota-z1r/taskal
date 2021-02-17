@@ -11,6 +11,8 @@ const getTodosRoutor = require("./routes/getTodos");
 const addRoutor = require("./routes/add");
 const deleteRoutor = require("./routes/delete");
 const loginRouter = require("./routes/login");
+const logoutRouter = require("./routes/logout");
+const topRouter = require("./routes/top");
 
 var app = express();
 
@@ -35,15 +37,27 @@ app.use(
     },
   })
   );
+  app.use((req,res,next) => {
+    if(req.session.userId === undefined){
+      res.locals.email = "Guest";
+      res.locals.isLoggedIn = false;
+    }
+    else {
+      res.locals.email = req.session.email;
+      res.locals.isLoggedIn = true; 
+    }
+    next();
+  });
   
-app.use("/", indexRouter);
+app.use("/top",topRouter);
+app.use("/index", indexRouter);
 app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
 app.use("/users", usersRouter);
 
 app.get("/gettodos", getTodosRoutor);
 app.post("/add", addRoutor);
 app.post("/delete/:todoid", deleteRoutor);
-// app.get("/login", loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
