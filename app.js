@@ -17,27 +17,25 @@ const signupRouter = require("./routes/signup");
 
 var app = express();
 
+app.use(
+  session({
+    secret: "secret", //secret属性は指定した文字列を使ってクッキーIDを暗号化しクッキーIDが書き換えらているかを判断する。
+    resave: false, //resaveはセッションにアクセスすると上書きされるオプションらしい。今回はfalse.
+    saveUninitialized: false, //saveUninitializedは未初期化状態のセッションも保存するようなオプション。今回はfalse.
+  })
+);
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(
-  session({
-    secret: "secret", //secret属性は指定した文字列を使ってクッキーIDを暗号化しクッキーIDが書き換えらているかを判断する。
-    resave: false, //resaveはセッションにアクセスすると上書きされるオプションらしい。今回はfalse.
-    saveUninitialized: false, //saveUninitializedは未初期化状態のセッションも保存するようなオプション。今回はfalse.
-    cookie: {
-      httpOnly: true, //クライアント側でクッキー値を見れない、書きかえれないようにするオプション
-      secure: true, //https通信
-      maxage: 1000 * 60 * 30, //セッションの消滅時間
-    },
-  })
-);
+
 
 app.use((req, res, next) => {
   if (req.session.userId === undefined) {
@@ -50,13 +48,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", topRouter);
+app.use("/top",topRouter);
 app.use("/index", indexRouter);
-app.use("/login", loginRouter);
-app.use("/logout", logoutRouter);
-app.use("/signup", signupRouter);
 app.use("/users", usersRouter);
 
+app.get("/top",topRouter);
+app.post("/top",topRouter);
+app.get("/signup", signupRouter);
+app.post("/signup", signupRouter);
+app.get("/login", loginRouter);
+app.post("/login", loginRouter);
+app.get("/logout", logoutRouter);
 app.get("/gettodos", getTodosRoutor);
 app.post("/add", addRoutor);
 app.post("/delete/:todoid", deleteRoutor);

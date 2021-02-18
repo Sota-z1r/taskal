@@ -8,32 +8,26 @@ const connection = mysql.createConnection({
   port: 3306,
   user: "b398803bdf1570",
   password: "8ae8b4f2",
-  database: "heroku_27791ce74a042e7",
+  database: "heroku_27791ce74a042e7"
 });
 
-router.get("/", (req, res, next) => {
+router.get("/login", (req, res, next) => {
   res.render("login");
 });
 
-router.post("/", (req, res, next) => {
+router.post("/login", (req, res, next) => {
   const email = req.body.email;
   const sql = "SELECT * FROM users WHERE email = ?";
   connection.query(sql, email, (error, results) => {
     if (results[0] != null) {
       if (req.body.password === results[0].password) {
-        console.log("ログイン成功！");
         req.session.userId = results[0].id;
-        req.session.email = results[0].email;
         req.session.username = results[0].username;
-        res.locals.username = req.session.username;
-        res.locals.isLoggedIn = true;
-        res.render("index");
-      } else {
-        console.log("ログイン失敗!");
+        res.redirect("index");
+      } else {//ログイン失敗
         res.redirect("/login");
       }
-    } else {
-      console.log("入力してください");
+    } else {//無記入
       res.redirect("/login");
     }
   });
