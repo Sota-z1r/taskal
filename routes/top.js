@@ -13,10 +13,27 @@ const connection = mysql.createConnection({
 });
 
 router.get("/top", (req, res, next) => {
-  res.render("top");
+  res.render("top", {errors: []});
 });
 
-router.post("/top", (req, res, next) => {
+router.post("/top", 
+(req, res, next) => {
+  let errors = [];
+  const email = req.body.email;
+  const reg = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
+  if(email === ""){
+    errors.push("Eメールを入力してください。");
+  } 
+  if(reg.test(email) === false && email != "") {
+    errors.push("有効なメールアドレスを入力してください。");
+  }
+  if(errors.length > 0){
+    res.render("top", {errors: errors});
+  } else {
+    next();
+  }
+},
+(req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     const sql = "SELECT * FROM users WHERE email = ?";
