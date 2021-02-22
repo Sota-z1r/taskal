@@ -48,17 +48,18 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/top",topRouter);
 app.use("/index", indexRouter);
 app.use("/users", usersRouter);
 
-app.get("/top",topRouter);
-app.post("/top",topRouter);
+app.get("/top", topRouter);
+app.post("/top", topRouter);
 app.get("/signup", signupRouter);
 app.post("/signup", signupRouter);
 app.get("/login", loginRouter);
 app.post("/login", loginRouter);
 app.get("/logout", logoutRouter);
+app.post("/logout", logoutRouter);
+
 app.get("/gettodos", getTodosRoutor);
 app.post("/add", addRoutor);
 app.post("/delete/:todoid", deleteRoutor);

@@ -1,5 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
+const bcrypt = require("bcrypt");
 
 const router = express.Router();
 
@@ -17,20 +18,24 @@ router.get("/top", (req, res, next) => {
 
 router.post("/top", (req, res, next) => {
     const email = req.body.email;
+    const password = req.body.password;
     const sql = "SELECT * FROM users WHERE email = ?";
     connection.query(sql, email, (error, results) => {
       if (results[0] != null) {
-        if (req.body.password === results[0].password) {
+        if (bcrypt.hashSync(password, results[0].password)) {//暗号化されたものと比較し、trueなら一致
           req.session.userId = results[0].id;
           req.session.username = results[0].username;
-          res.redirect("index");
+          console.log("成功");
+          res.redirect("/index");
         } else {
           //ログイン失敗
-          res.redirect("top");
+          console.log("失敗");
+          res.redirect("/top");
         }
       } else {
         //無記入
-        res.redirect("top");
+        console.log("無記入");
+        res.redirect("/top");
       }
     });
   }

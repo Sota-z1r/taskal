@@ -1,5 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
+const bcrypt = require("bcrypt");
 
 const router = express.Router();
 
@@ -14,6 +15,8 @@ const connection = mysql.createConnection({
 router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
+
+
 
 router.post("/signup", 
 (req, res, next) => {
@@ -31,8 +34,9 @@ router.post("/signup",
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
-    const sql = "INSERT INTO users(email, password, username) VALUES(?, ?, ?)";
-    connection.query(sql, [email, password, username], (error, results) => {
+    const hashed_password = bcrypt.hashSync(password, 10);//passwordをハッシュ化
+    const sql = "INSERT INTO users(username, email, password) VALUES(?, ?, ?)";
+    connection.query(sql, [username, email, hashed_password], (error, results) => {
       req.session.userId = results.insertId; //INSERTクエリが成功すると、特に設定しなくても、追加したレコードのidがresultsオブジェクトのinsertIdというプロパティに入る
       req.session.username = username;
       res.redirect("/index");
