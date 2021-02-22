@@ -43,6 +43,12 @@ const printTodos = function (todos) {
     transform.method = "POST";
     transform.id = "transForm_1to2" + todoId;
     li.appendChild(transform);
+    // doingBtnをつくる
+    const doingBtn = document.createElement("button");
+    doingBtn.innerHTML = "doing";
+    doingBtn.id = "doingBtn";
+    doingBtn.setAttribute("onclick", `transDoing(${todoId})`);
+    transform.appendChild(doingBtn);
     // deletformを作る
     const deleteform = document.createElement("form");
     deleteform.className = "deleteform";
@@ -56,12 +62,6 @@ const printTodos = function (todos) {
     deleteBtn.id = "deleteBtn";
     deleteBtn.setAttribute("onclick", `deleteTodo(${todoId})`);
     deleteform.appendChild(deleteBtn);
-    // doingBtnをつくる
-    const doingBtn = document.createElement("button");
-    doingBtn.innerHTML = "doing";
-    doingBtn.id = "doingBtn";
-    doingBtn.setAttribute("onclick", `transDoing(${todoId})`);
-    transform.appendChild(doingBtn);
   });
 };
 
