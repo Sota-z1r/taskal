@@ -11,10 +11,10 @@ const getTodos = function () {
     const state_1 = [];
     const state_2 = [];
     const state_3 = [];
-    todos.forEach((todos) => {
-      if (todos.state == 1) state_1.push(todos);
-      if (todos.state == 2) state_2.push(todos);
-      if (todos.state == 3) state_3.push(todos);
+    todos.forEach((todo) => {
+      if (todo.state == 1) state_1.push(todo);
+      if (todo.state == 2) state_2.push(todo);
+      if (todo.state == 3) state_3.push(todo);
     });
     printTodos(state_1);
     printDoings(state_2);
@@ -41,14 +41,14 @@ const printTodos = function (todos) {
     transform.className = "transform";
     transform.action = "/transDoing/";
     transform.method = "POST";
-    transform.id = "transForm_1to2";
+    transform.id = "transForm_1to2" + todoId;
     li.appendChild(transform);
     // deletformを作る
     const deleteform = document.createElement("form");
     deleteform.className = "deleteform";
     deleteform.action = "/delete/";
     deleteform.method = "POST";
-    deleteform.id = "deleteForm";
+    deleteform.id = "deleteForm" + todoId;
     li.appendChild(deleteform);
     // deleteBtnを作る
     const deleteBtn = document.createElement("button");
@@ -84,14 +84,14 @@ const printDoings = function (doings) {
     transform.className = "transform";
     transform.action = "/transDone/";
     transform.method = "POST";
-    transform.id = "transForm_2to3";
+    transform.id = "transForm_2to3" + doingId;
     li.appendChild(transform);
     // deletformを作る
     const deleteform = document.createElement("form");
     deleteform.className = "deleteform";
     deleteform.action = "/delete/";
     deleteform.method = "POST";
-    deleteform.id = "deleteForm";
+    deleteform.id = "deleteForm" + doingId;
     li.appendChild(deleteform);
     // deleteBtnを作る
     const deleteBtn = document.createElement("button");
@@ -127,7 +127,7 @@ const printDones = function (dones) {
     deleteform.className = "deleteform";
     deleteform.action = "/delete/";
     deleteform.method = "POST";
-    deleteform.id = "deleteForm";
+    deleteform.id = "deleteForm" + doneId;
     li.appendChild(deleteform);
     // deleteBtnを作る
     const deleteBtn = document.createElement("button");
@@ -139,20 +139,20 @@ const printDones = function (dones) {
 };
 
 const deleteTodo = function (todoId) {
-  const form = document.getElementById("deleteForm");
+  const form = document.getElementById("deleteForm" + todoId);
   form.action = form.action + todoId;
   form.submit();
 };
 
-const transDoing = function (todoId) {
-  const form = document.getElementById("transForm_1to2");
-  form.action = form.action + todoId;
+const transDoing = function (doingId) {
+  const form = document.getElementById("transForm_1to2" + doingId);
+  form.action = form.action + doingId;
   form.submit();
 };
 
-const transDone = function (todoId) {
-  const form = document.getElementById("transForm_2to3");
-  form.action = form.action + todoId;
+const transDone = function (doneId) {
+  const form = document.getElementById("transForm_2to3" + doneId);
+  form.action = form.action + doneId;
   form.submit();
 };
 
