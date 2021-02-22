@@ -13,7 +13,8 @@ const connection = mysql.createConnection({
 });
 
 router.get("/signup", (req, res, next) => {
-  res.render("signup");
+  let errors = [];
+  res.render("signup", {errors: []});
 });
 
 
@@ -21,10 +22,18 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", 
 (req, res, next) => {
   const email = req.body.email;
+  let errors = [];
+  let reg = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;//正規表現
   const sql = "SELECT * FROM users WHERE email = ?";
   connection.query(sql, email, (error, results) => {
-    if (results.length > 0) { //email登録済みの処理
-      res.redirect("/signup");
+    if(reg.test(email) === false){//有効なメールか確認
+      errors.push("有効なメールアドレスを入力してください。");
+    }
+    if (results[0] != null) { //email登録済みの処理
+      errors.push("入力されたメールアドレスは登録済みです。");
+    }
+     if(errors[0] != null){//エラーがあったら
+      res.render("signup", {errors: errors});
     } else {
       next();//次のミドルウェアに渡す役割 next();
     }

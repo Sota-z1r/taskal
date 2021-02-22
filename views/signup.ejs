@@ -9,6 +9,13 @@
       <form action="/signup" method="post">
         <input type="text" placeholder="ユーザーネーム" name="username"/><br>
         <input type="text" placeholder="email" name="email"/><br>
+        <% if(errors.length > 0) { %>
+        <ul>
+          <% errors.forEach(function (value) { %>
+          <li><%= value %></li>
+          <% }); %>
+        <% } %>
+        </ul>
         <input type="password" placeholder="パスワード" name="password"/><br>
         <input type="submit" value="作成">
       </form>
