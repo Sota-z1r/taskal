@@ -1,21 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const mysql = require("mysql");
+const connection = require("./connection.js");
 
 function changeTodoState(sql, todoId) {
   return new Promise((resolve) => {
-    const connection = mysql.createConnection({
-      host: "us-cdbr-east-03.cleardb.com",
-      port: 3306,
-      user: "b3fb5ff6f2f761",
-      password: "fa2c0c58",
-      database: "heroku_82cf2653734cd1a",
-    });
-    connection.connect();
     connection.query(sql, todoId, function (err, rows, fields) {
       resolve(rows);
     });
-    connection.end();
   });
 }
 
