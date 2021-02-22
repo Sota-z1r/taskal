@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
   port: 3306,
   user: "b398803bdf1570",
   password: "8ae8b4f2",
-  database: "heroku_27791ce74a042e7"
+  database: "heroku_27791ce74a042e7",
 });
 
 router.get("/login", (req, res, next) => {
@@ -27,11 +27,13 @@ router.post("/login", (req, res, next) => {
         req.session.username = results[0].username;
         console.log("成功");
         res.redirect("/index");
-      } else {//ログイン失敗
+      } else {
+        //ログイン失敗
         console.log("失敗");
         res.redirect("/login");
       }
-    } else {//無記入
+    } else {
+      //無記入
       console.log("無記入");
       res.redirect("/login");
     }

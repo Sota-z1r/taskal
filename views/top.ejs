@@ -13,14 +13,21 @@
     <div class="login">
       <form action="/top" method="post">
         <input type="text" placeholder="email" name="email"><br>
-        <% if(errors.length > 0) { %>
+        <% if(mailErrors.length > 0) { %>
           <ul>
-            <% errors.forEach(function (value) { %>
+            <% mailErrors.forEach(function (value) { %>
             <li><%= value %></li>
             <% }); %>
           </ul>
         <% } %> 
         <input type="password" placeholder="password" name="password"><br>
+        <% if(passErrors.length > 0) { %>
+          <ul>
+            <% passErrors.forEach(function (value) { %>
+            <li><%= value %></li>
+            <% }); %>
+          </ul>
+        <% } %> 
         <input type="submit" value="Login">
         <ul>
           <li>アカウントをお持ちでないですか？</li>
