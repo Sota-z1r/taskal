@@ -7,9 +7,9 @@ function getTodos(sql) {
     const connection = mysql.createConnection({
       host: 'us-cdbr-east-03.cleardb.com',
       port: 3306,
-      user: 'b3fb5ff6f2f761',
-      password: 'fa2c0c58',
-      database: 'heroku_82cf2653734cd1a'
+      user: 'b398803bdf1570',
+      password: '8ae8b4f2',
+      database: 'heroku_27791ce74a042e7'
     });
     connection.connect();
     connection.query(sql, function (err, rows, fields) {
