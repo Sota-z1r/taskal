@@ -11,11 +11,13 @@ const getTodos = function () {
     const state_1 = [];
     const state_2 = [];
     const state_3 = [];
+
     todos.forEach((todo) => {
       if (todo.state == 1) state_1.push(todo);
       if (todo.state == 2) state_2.push(todo);
       if (todo.state == 3) state_3.push(todo);
     });
+
     printTodos(state_1);
     printDoings(state_2);
     printDones(state_3);
@@ -113,6 +115,7 @@ const printDones = function (dones) {
   dones.forEach((done) => {
     const doneId = done.todo_id;
     const doneText = done.todo;
+    const doneDate = done.date;
     // liを作る
     const li = document.createElement("li");
     li.className = "done";
@@ -135,6 +138,13 @@ const printDones = function (dones) {
     deleteBtn.id = "deleteBtn";
     deleteBtn.setAttribute("onclick", `deleteTodo(${doneId})`);
     deleteform.appendChild(deleteBtn);
+    // 期限超過のタスクを消去
+    const now = new Date();
+    const month_1 = now.getMonth() + 1;
+    const month_2 = [];
+    if (month_1 < 10) month_2[0] = "0" + month_1;
+    const nowDate = now.getFullYear() + "-" + month_2 + "-" + now.getDate();
+    if (nowDate > doneDate) deleteTodo(doneId);
   });
 };
 
