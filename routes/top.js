@@ -34,6 +34,7 @@ router.post(
       mailErrors.push("有効なメールアドレスを入力してください。");
     }
     if (mailErrors.length > 0 || passErrors.length > 0) {
+      //エラーがあったとき
       res.render("top", { mailErrors: mailErrors, passErrors: passErrors });
     } else {
       next();
@@ -60,7 +61,7 @@ router.post(
         }
       } else {
         if(email != ""){
-          //Eメールがないとき
+          //Eメールが見つからないとき
           mailErrors.push("Eメールが見つかりません。");
           res.render("top", { mailErrors: mailErrors, passErrors: []});
         } else {
