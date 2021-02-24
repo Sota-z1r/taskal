@@ -56,13 +56,13 @@ router.post(
         } else {
           //パスワードが違う
           passErrors.push("パスワードが違います。");
-          res.render("top", { mailErrors: [], passErrors: passErrors});
+          res.render("top", { mailErrors: [], passErrors: passErrors });
         }
       } else {
-        if(email != ""){
+        if (email != "") {
           //Eメールが見つからないとき
           mailErrors.push("Eメールが見つかりません。");
-          res.render("top", { mailErrors: mailErrors, passErrors: []});
+          res.render("top", { mailErrors: mailErrors, passErrors: [] });
         } else {
           //無記入
           mailErrors.push("Eメールを入力してください。");
