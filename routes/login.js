@@ -25,16 +25,13 @@ router.post("/login", (req, res, next) => {
       if (bcrypt.compareSync(password, results[0].password)) {
         req.session.userId = results[0].id;
         req.session.username = results[0].username;
-        console.log("成功");
         res.redirect("/index");
       } else {
         //ログイン失敗
-        console.log("失敗");
         res.redirect("/login");
       }
     } else {
       //無記入
-      console.log("無記入");
       res.redirect("/login");
     }
   });

@@ -52,7 +52,6 @@ router.post(
           //ログイン成功
           req.session.userId = results[0].id;
           req.session.username = results[0].username;
-          console.log("成功");
           res.redirect("/index");
         } else {
           //パスワードが違う
