@@ -13,3 +13,6 @@
 0・signup空処理
 
 コミュニティ共有機能, feature/community
+コミュニテイごとのidを付与
+
+id usernameid todoid

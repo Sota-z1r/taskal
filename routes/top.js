@@ -16,8 +16,7 @@ router.get("/top", (req, res, next) => {
   res.render("top", { mailErrors: [], passErrors: [] });
 });
 
-router.post(
-  "/top",
+router.post("/top",
   (req, res, next) => {
     let mailErrors = [];
     let passErrors = [];
