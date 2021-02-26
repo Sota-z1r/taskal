@@ -8,24 +8,36 @@
   </head>
   <body>
     <div class="content">
-      <h1><%= title %></h1>
-
-      <div class="inputTodo">
-        <form action="/add" method="POST">
-          <input
-            class="addText"
-            type="text"
-            name="todo"
-            placeholder="input todo"
-          />
-          <button class="addBtn" type="submit">add</button>
-        </form>
+      <div class="inputArea">
+        <h1 class="appTitle"><%= title %></h1>
+        <div class="inputTodo">
+          <form action="/add" method="POST">
+            <input
+              class="addText"
+              type="text"
+              name="todo"
+              placeholder="input todo"
+            />
+            <button class="addBtn" type="submit">add</button>
+            <input id="date" type="date" name="date" value="">
+          </form>
+        </div>
       </div>
 
-      <h2>TodoList</h2>
-      <form action="/delete/" method="POST" id="deleteForm">
-        <ul class="todoList" id="todoList"></ul>
-      </form>
+      <div class="lists">
+        <div class="list">
+          <h2 class="title">TodoList</h2>
+          <ul class="todoList" id="todoList"></ul>
+        </div>
+        <div class="list">
+          <h2 class="title">DoingList</h2>
+          <ul class="doingList" id="doingList"></ul>
+        </div>
+        <div class="list">
+          <h2 class="title">DoneList</h2>
+          <ul class="doneList" id="doneList"></ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>

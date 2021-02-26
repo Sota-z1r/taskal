@@ -7,9 +7,9 @@ function changeTodoState(sql, todoId) {
     const connection = mysql.createConnection({
       host: "us-cdbr-east-03.cleardb.com",
       port: 3306,
-      user: "b398803bdf1570",
-      password: "8ae8b4f2",
-      database: "heroku_27791ce74a042e7",
+      user: "b3fb5ff6f2f761",
+      password: "fa2c0c58",
+      database: "heroku_82cf2653734cd1a",
     });
     connection.connect();
     connection.query(sql, todoId, function (err, rows, fields) {
@@ -19,9 +19,9 @@ function changeTodoState(sql, todoId) {
   });
 }
 
-router.post("/delete/:todoid", async function (req, res, next) {
+router.post("/transDone/:todoid", async function (req, res, next) {
   const todoId = req.params.todoid;
-  const sql = "UPDATE todos SET state = 0 WHERE todo_id = ?;";
+  const sql = "UPDATE todos SET state = 3 WHERE todo_id = ?;";
   await changeTodoState(sql, todoId);
   res.redirect("/");
 });
