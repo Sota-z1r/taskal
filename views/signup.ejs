@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <div class="signup" align="center">
+    <p>Tascal アカウントの作成</p>
+    <form action="/signup" method="post">
+      <input type="text" placeholder="ユーザーネーム" name="username" /><br>
+      <% if(usernameErrors.length > 0) { %>
+        <ul>
+          <% usernameErrors.forEach( (value) => { %>
+          <li><%= value %></li>
+          <% }); %>
+        </ul>
+        <% } %>
+      <input type="text" placeholder="email" name="email" /><br>
+      <% if(mailErrors.length > 0) { %>
+      <ul>
+        <% mailErrors.forEach((value) => { %>
+        <li><%= value %></li>
+        <% }); %>
+      </ul>
+      <% } %>
+      <input type="password" placeholder="パスワード" name="password" /><br>
+      <% if(passErrors.length > 0) { %>
+      <ul>
+        <% passErrors.forEach((value) => { %>
+        <li><%= value %></li>
+        <% }); %>
+      </ul>
+      <% } %>
+      <input type="submit" value="作成">
+    </form>
+  </div>
+</body>
+
+</html>

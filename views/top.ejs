@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/top.css"/>
+  </head>
+  <body>
+    <div class="body"></div>
+    <div class="grad"></div>
+    <div class="header">
+      <div>Tas<span>cal</span></div>
+    </div>
+    <br>
+    <div class="login">
+      <form action="/top" method="post">
+        <input type="text" placeholder="email" name="email"><br>
+        <% if(mailErrors.length > 0) { %>
+          <ul>
+            <% mailErrors.forEach(function (value) { %>
+            <li><%= value %></li>
+            <% }); %>
+          </ul>
+        <% } %> 
+        <input type="password" placeholder="password" name="password"><br>
+        <% if(passErrors.length > 0) { %>
+          <ul>
+            <% passErrors.forEach(function (value) { %>
+            <li><%= value %></li>
+            <% }); %>
+          </ul>
+        <% } %> 
+        <input type="submit" value="Login">
+        <ul>
+          <li>アカウントをお持ちでないですか？</li>
+          <li><a href="/signup">新規登録へ</a></li>
+        </ul>
+      </div>
+  </body>
+</html>
