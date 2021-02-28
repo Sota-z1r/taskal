@@ -16,6 +16,7 @@ const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const topRouter = require("./routes/top");
 const signupRouter = require("./routes/signup");
+const teamsRouter = require("./routes/teams");
 
 var app = express();
 
@@ -59,6 +60,7 @@ app.get("/login", loginRouter);
 app.post("/login", loginRouter);
 app.get("/logout", logoutRouter);
 app.post("/logout", logoutRouter);
+app.get("/teams", teamsRouter);
 
 app.get("/gettodos", getTodosRoutor);
 app.post("/add", addRoutor);

@@ -52,7 +52,8 @@ router.post(
           //ログイン成功
           req.session.userId = results[0].id;
           req.session.username = results[0].username;
-          res.redirect("/");
+          console.log("top "+req.session.userId);
+          res.redirect("/teams");
         } else {
           //パスワードが違う
           passErrors.push("パスワードが違います。");

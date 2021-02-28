@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <% if(teams.length > 0){ %>
+    <div>
+      <% teams.forEach((team)=>{ %>
+        <li><a  href = "http://localhost:3000/<%= team.id %>"><%= team.name %></a></li>
+      <% }); %>
+    </div>
+    <% } %>
+  </body>
+</html>

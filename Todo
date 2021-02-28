@@ -15,6 +15,7 @@
 @teams addしたときにinsertされる.
 id
 user_id
+##ページを作る。
 
 @teamtodos addしたときにinsertされる.
 id
