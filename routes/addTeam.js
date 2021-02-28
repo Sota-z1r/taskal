@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
 });
 
 router.get("/addTeam", (req,res,next)=>{
-  res.render("addTeam");
+  res.render("addTeam", {teamNameErrors: []});
 });
 
 router.post("/addTeam", (req, res, next) => {

@@ -10,9 +10,9 @@
     <p>チームの作成</p>
     <form action="/addTeam" method="post">
       <input type="text" placeholder="チーム名" name="teamName" /><br>
-      <% if(teamnameErrors.length > 0) { %>
+      <% if(teamNameErrors.length > 0) { %>
         <ul>
-          <% teamnameErrors.forEach( (value) => { %>
+          <% teamNameErrors.forEach( (value) => { %>
           <li><%= value %></li>
           <% }); %>
         </ul>
