@@ -11,6 +11,7 @@ const addRoutor = require("./routes/add");
 const deleteRoutor = require("./routes/delete");
 const transDoingRoutor = require("./routes/transDoing");
 const transDoneRoutor = require("./routes/transDone");
+const boardRoutor = require("./routes/board");
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.post("/add", addRoutor);
 app.post("/transDoing/:todoid", transDoingRoutor);
 app.post("/transDone/:todoid", transDoneRoutor);
 app.post("/delete/:todoid", deleteRoutor);
+app.get("/board", boardRoutor);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
