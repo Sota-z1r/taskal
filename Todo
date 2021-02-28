@@ -12,4 +12,11 @@
 0・top空どうかを確認
 0・signup空処理
 
-コミュニティ共有機能
+@teams addしたときにinsertされる
+id
+user_id
+
+@teamtodos addしたときにinsertされる
+id
+team_id
+todos_id
