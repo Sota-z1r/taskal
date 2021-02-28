@@ -9,8 +9,7 @@ const connection = mysql.createConnection({
   port: 3306,
   user: "b398803bdf1570",
   password: "8ae8b4f2",
-  database: "heroku_27791ce74a042e7",
-});
+  database: "heroku_27791ce74a042e7",});
 
 router.get("/top", (req, res, next) => {
   res.render("top", { mailErrors: [], passErrors: [] });

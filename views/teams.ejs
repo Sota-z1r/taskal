@@ -2,8 +2,11 @@
 <html>
   <head></head>
   <body>
-    <% if(teams.length > 0){ %>
     <div>
+      <a href="/addTeam">チームを追加</a>
+    </div>
+    <% if(teams.length > 0){ %>
+    <div align = "center">
       <% teams.forEach((team)=>{ %>
         <li><a  href = "http://localhost:3000/<%= team.id %>"><%= team.name %></a></li>
       <% }); %>
