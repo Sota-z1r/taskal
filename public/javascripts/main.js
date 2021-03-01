@@ -2,7 +2,8 @@
 
 const getTodos = function () {
   const request = new XMLHttpRequest();
-  const requestURL = "/gettodos";
+  const requestURL = location.pathname.substr(10);
+  console.log("main-> "+requestURL);
   request.open("GET", requestURL);
   request.responseType = "json";
   request.send();

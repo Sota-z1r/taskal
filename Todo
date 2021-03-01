@@ -21,3 +21,7 @@ user_id
 id
 team_id
 todos_id
+
+やること
+・addしたときにidを入れる
+・getTodosのsqlを修正

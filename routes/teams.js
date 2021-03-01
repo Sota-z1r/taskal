@@ -15,8 +15,7 @@ router.get("/teams", (req, res, next) => {
   console.log("teams "+userId);
   const sql = "SELECT * FROM teams WHERE user_id = ?";
   connection.query(sql, userId, (error, results) => {
-    console.log(results);
-    res.render("teams", {teams: results});
+    res.render("teams", {teams: results});//チームがないときは？
   });
 });
 

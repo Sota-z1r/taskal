@@ -8,7 +8,7 @@
     <% if(teams.length > 0){ %>
     <div align = "center">
       <% teams.forEach((team)=>{ %>
-        <li><a  href = "http://localhost:3000/<%= team.id %>"><%= team.name %></a></li>
+        <li><a  href = "http://localhost:3000/Todoboard/<%= team.hashedTeamId%>"><%= team.teamName %></a></li>
       <% }); %>
     </div>
     <% } %>
