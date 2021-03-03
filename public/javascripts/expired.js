@@ -1,24 +1,24 @@
 "use strict";
 
-const board = function () {
+const limboard = function () {
   const request = new XMLHttpRequest();
-  const requestURL = "/board";
+  const requestURL = "/limboard";
   request.open("GET", requestURL);
   request.responseType = "json";
   request.send();
   request.onload = function () {
-    const dis = request.response;
-    console.log(dis);
-    printLimit(dis);
+    const dislim = request.response;
+    console.log(dislim);
+    printLimboard(dislim);
   };
 };
 
-const printLimit = function (dis) {
+const printLimboard = function (dislim) {
   const limitList = document.getElementById("limit");
-  dis.forEach((item) => {
-    const todo_date = item.date;
+  dislim.forEach((item) => {
+    const expired_date = item.date;
     console.log(typeof(item.date));
-    const limitText = item.todo;
+    const expiredText = item.todo;
     // liを作る
     const li = document.createElement("li");
     li.className = "limit";
@@ -26,14 +26,14 @@ const printLimit = function (dis) {
     // todoの内容を入れるpタグを作る
     const p = document.createElement("p");
     const q = document.createElement("p");
-    p.innerHTML = limitText;
-    p.className = "limitText";
-    q.innerHTML = todo_date;
-    q.className = "todo_date";
+    p.innerHTML = expiredText;
+    p.className = "expiredText";
+    q.innerHTML = expired_date;
+    q.className = "expired_date";
     li.appendChild(p);
     li.appendChild(q);
     
   });
 };
 
-board();
+limboard();

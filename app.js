@@ -17,6 +17,7 @@ const logoutRouter = require("./routes/logout");
 const topRouter = require("./routes/top");
 const signupRouter = require("./routes/signup");
 const boardRoutor = require("./routes/board");
+const limboardRoutor = require("./routes/limboard");
 
 var app = express();
 
@@ -68,6 +69,7 @@ app.post("/transDoing/:todoid", transDoingRoutor);
 app.post("/transDone/:todoid", transDoneRoutor);
 app.post("/delete/:todoid", deleteRoutor);
 app.get("/board", boardRoutor);
+app.get("/limboard", limboardRoutor);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

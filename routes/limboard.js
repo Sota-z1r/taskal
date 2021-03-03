@@ -4,7 +4,7 @@ const mysql = require("mysql");
 var moment = require("moment");
 const connection = require("./connection.js");
 
-function board(sql) {
+function limboard(sql) {
   return new Promise((resolve) => {
     connection.query(sql, function (err, rows, fields) {
       resolve(rows);
@@ -12,12 +12,12 @@ function board(sql) {
   });
 }
 
-router.get("/board", async function (req, res, next) {
+router.get("/limboard", async function (req, res, next) {
   const sql = 'SELECT * FROM todos WHERE state != "0";';
-  const todos = await board(sql);
+  const todos = await limboard(sql);
   let now = new moment().format("YYYY-MM-DD");
   console.log(now);
-  let dis = [];
+  let dislim = [];
   todos.forEach(function(item){
     console.log(item.date);
     let date = item.date;
@@ -27,12 +27,12 @@ router.get("/board", async function (req, res, next) {
     let tasklim = Date.parse(date);
     const limit = (tasklim - today)/86400000;
     console.log(limit);
-    if(limit <= 7 && limit>0){
-      dis.push(item);
+    if(limit <= 0){
+      dislim.push(item);
     }
   })
-  console.log(dis);
-  res.json(dis);
+  console.log(dislim);
+  res.json(dislim);
 });
 
 module.exports = router;
