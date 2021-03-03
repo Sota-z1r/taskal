@@ -3,7 +3,7 @@
 const getTodos = function () {
   const request = new XMLHttpRequest();
   const requestURL = location.pathname.substr(10);
-  console.log("main-> "+requestURL);
+  console.log("main-> " + requestURL);
   request.open("GET", requestURL);
   request.responseType = "json";
   request.send();
@@ -142,9 +142,13 @@ const printDones = function (dones) {
     // 期限超過のタスクを消去
     const now = new Date();
     const month_1 = now.getMonth() + 1;
+    const date_1 = now.getDate();
     const month_2 = [];
+    const date_2 = [];
     if (month_1 < 10) month_2[0] = "0" + month_1;
-    const nowDate = now.getFullYear() + "-" + month_2 + "-" + now.getDate();
+    if (date_1 < 10) date_2[0] = "0" + date_1;
+    const nowDate = now.getFullYear() + "-" + month_2 + "-" + date_2;
+    window.alert(nowDate + " " + doneDate);
     if (nowDate > doneDate) deleteTodo(doneId);
   });
 };

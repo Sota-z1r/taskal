@@ -15,7 +15,8 @@ router.post("/add", async function (req, res, next) {
   const date = req.body.date;
   const sql = "INSERT INTO todos(todo, state, date) values(?, ?, ?);";
   await insertTodo(sql, todo, "1", date);
-  res.redirect("/");
+  console.log(req.session.hashedId);
+  res.redirect("/Todoboard/" + req.session.hashedId);
 });
 
 module.exports = router;

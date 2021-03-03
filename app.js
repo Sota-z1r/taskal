@@ -53,7 +53,6 @@ app.use((req, res, next) => {
 
 app.use("/users", usersRouter);
 
-//app.get("/Todoboard/:hashId", indexRouter);
 app.get("/Todoboard/:hashId", indexRouter);
 app.get("/top", topRouter);
 app.post("/top", topRouter);
@@ -67,14 +66,13 @@ app.get("/teams", teamsRouter);
 app.get("/addTeam", addTeamRouter);
 app.post("/addTeam", addTeamRouter);
 
-// app.get("/:hashId", getTodosRoutor);
 app.get("/:hashId", getTodosRoutor);
 app.post("/add", addRoutor);
 app.post("/delete/:todoid", deleteRoutor);
 app.post("/transDoing/:todoid", transDoingRoutor);
 app.post("/transDone/:todoid", transDoneRoutor);
 app.post("/delete/:todoid", deleteRoutor);
-app.get("/board", boardRoutor);
+app.get("/board/:hashedId", boardRoutor);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

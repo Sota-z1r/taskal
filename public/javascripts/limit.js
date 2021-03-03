@@ -2,7 +2,8 @@
 
 const board = function () {
   const request = new XMLHttpRequest();
-  const requestURL = "/board";
+  const requestURL = "/board/" + location.pathname.substr(11);
+  console.log(requestURL);
   request.open("GET", requestURL);
   request.responseType = "json";
   request.send();
@@ -14,6 +15,7 @@ const board = function () {
 
 const printLimit = function (dis) {
   const limitList = document.getElementById("limit");
+  console.log(dis);
   dis.forEach((item) => {
     const todo_date = item.date;
     const limitText = item.todo;
@@ -30,7 +32,6 @@ const printLimit = function (dis) {
     q.className = "todo_date";
     li.appendChild(p);
     li.appendChild(q);
-    
   });
 };
 
