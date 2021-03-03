@@ -80,9 +80,7 @@ router.post(
     const password = req.body.password;
     const hashed_password = bcrypt.hashSync(password, 10); //passwordを暗号化
     const sql = "INSERT INTO users(username, email, password) VALUES(?, ?, ?)";
-    connection.query(
-      sql,
-      [username, email, hashed_password],
+    connection.query(sql,[username, email, hashed_password],
       (error, results) => {
         req.session.userId = results.insertId; //INSERTクエリが成功すると、特に設定しなくても、追加したレコードのidがresultsオブジェクトのinsertIdというプロパティに入る
         req.session.username = username;
