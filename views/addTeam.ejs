@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
 
-<head>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-
-<body>
-  <div class="addTeam" align="center">
-    <p>チームの作成</p>
-    <form action="/addTeam" method="post">
-      <input type="text" placeholder="チーム名" name="teamName" /><br>
-      <% if(teamNameErrors.length > 0) { %>
+  <body>
+    <div class="addTeam" align="center">
+      <p>チームの作成</p>
+      <form action="/addTeam" method="post">
+        <input type="text" placeholder="チーム名" name="teamName" /><br />
+        <% if(teamNameErrors.length > 0) { %>
         <ul>
           <% teamNameErrors.forEach( (value) => { %>
           <li><%= value %></li>
           <% }); %>
         </ul>
         <% } %>
-      <input type="submit" value="作成">
-    </form>
-  </div>
-</body>
-
+        <input type="submit" value="作成" />
+      </form>
+    </div>
+    <div class="inviteTeam" align="center">
+      <p>招待されたチームへ参加</p>
+      <form action="/inviteTeam" method="post">
+        <input type="text" placeholder="URL" name="url" /><br />
+        <input type="submit" value="参加" />
+      </form>
+    </div>
+  </body>
 </html>

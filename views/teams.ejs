@@ -6,10 +6,14 @@
       <a href="/addTeam">チームを追加</a>
     </div>
     <% if(teams.length > 0){ %>
-    <div align = "center">
+    <div align="center">
       <% teams.forEach((team)=>{ %>
-        <!-- 実装時にURLを変える。 -->
-        <li><a  href = "http://localhost:3000/Todoboard/<%= team.hashedTeamId %>"><%= team.teamName %></a></li>
+      <!-- 実装時にURLを変える。 -->
+      <li>
+        <a href="http://localhost:3000/Todoboard/<%= team.hashedTeamId %>"
+          ><%= team.teamName %></a
+        >
+      </li>
       <% }); %>
     </div>
     <% } %>
