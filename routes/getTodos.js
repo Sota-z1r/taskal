@@ -10,8 +10,10 @@ function getTodos(sql) {
   });
 }
 
-router.get("/gettodos", async function (req, res, next) {
-  const sql = 'SELECT * FROM todos WHERE state != "0";';
+router.get("/:hashId", async function (req, res, next) {
+  console.log("getTodos");
+  const hashedId = req.params.hashId;
+  const sql = 'SELECT * FROM todos WHERE state != 0;';
   const todos = await getTodos(sql);
   res.json(todos);
 });

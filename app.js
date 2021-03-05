@@ -8,6 +8,17 @@ const session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+const getTodosRoutor = require("./routes/getTodos");
+const addRoutor = require("./routes/add");
+const deleteRoutor = require("./routes/delete");
+const transDoingRoutor = require("./routes/transDoing");
+const transDoneRoutor = require("./routes/transDone");
+const loginRouter = require("./routes/login");
+const logoutRouter = require("./routes/logout");
+const topRouter = require("./routes/top");
+const signupRouter = require("./routes/signup");
+const teamsRouter = require("./routes/teams");
+const addTeamRouter = require("./routes/addTeam");
 
 var app = express();
 
@@ -42,8 +53,28 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-app.use("/", indexRouter);
 app.use("/users", usersRouter);
+
+//app.get("/Todoboard/:hashId", indexRouter);
+app.get("/Todoboard/:hashId", indexRouter);
+app.get("/top", topRouter);
+app.post("/top", topRouter);
+app.get("/signup", signupRouter);
+app.post("/signup", signupRouter);
+app.get("/login", loginRouter);
+app.post("/login", loginRouter);
+app.get("/logout", logoutRouter);
+app.post("/logout", logoutRouter);
+app.get("/teams", teamsRouter);
+app.get("/addTeam", addTeamRouter);
+app.post("/addTeam", addTeamRouter);
+
+// app.get("/:hashId", getTodosRoutor);
+app.get("/:hashId", getTodosRoutor);
+app.post("/add", addRoutor);
+app.post("/delete/:todoid", deleteRoutor);
+app.post("/transDoing/:todoid", transDoingRoutor);
+app.post("/transDone/:todoid", transDoneRoutor);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

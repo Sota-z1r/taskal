@@ -11,7 +11,6 @@ function insertTodo(sql, todo, state, date) {
 }
 
 router.post("/add", async function (req, res, next) {
-  console.log(req.body);
   const todo = req.body.todo;
   const date = req.body.date;
   const sql = "INSERT INTO todos(todo, state, date) values(?, ?, ?);";
