@@ -9,9 +9,9 @@ const { checkNotAuthenticated } = require("../config/auth");
 const pool = mysql.createPool({
   host: "us-cdbr-east-03.cleardb.com",
   port: 3306,
-  user: "b326b65a6a8a4e",
-  password: "ba9ed138",
-  database: "heroku_ca7a263364fcc5a",
+  user: "b398803bdf1570",
+  password: "8ae8b4f2",
+  database: "heroku_27791ce74a042e7",
 });
 
 const createConnection = function () {
@@ -84,25 +84,25 @@ router.post("/register", async function (req, res, next) {
   res.redirect("/users/login");
 });
 
-// login
-router.get("/login", checkNotAuthenticated, function (req, res, next) {
-  res.render("login", { title: "login" });
-});
+// // topへ
+// router.get("/login", checkNotAuthenticated, function (req, res, next) {
+//   res.render("top", { passErrors: [], mailErrors: []});
+// });
 
-router.post(
-  "/login",
-  function (req, res, next) {
-    if (req.body.username.length <= 0 || req.body.password.length <= 0) {
-      return res.redirect("/users/login");
-    }
-    next();
-  },
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/users/login",
-    failureFlash: true,
-  })
-);
+// router.post(
+//   "/login",
+//   function (req, res, next) {
+//     if (req.body.email.length <= 0 || req.body.password.length <= 0) {
+//       return res.redirect("/users/top");
+//     }
+//     next();
+//   },
+//   passport.authenticate("local", {
+//     successRedirect: "/teams",
+//     failureRedirect: "/users/top",
+//     failureFlash: true,
+//   })
+// );
 
 // logout
 router.get("/logout", (req, res) => {
