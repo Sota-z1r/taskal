@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const mysql = require("mysql");
 var moment = require("moment");
+const connection = require("./connection.js");
 
 function board(sql) {
   return new Promise((resolve) => {
@@ -17,7 +18,6 @@ function board(sql) {
     connection.query(sql, function (err, rows, fields) {
       resolve(rows);
     });
-    connection.end();
   });
 }
 
@@ -36,7 +36,7 @@ router.get("/board/:hashId", async function (req, res, next) {
     let tasklim = Date.parse(date);
     const limit = (tasklim - today) / 86400000;
     console.log(limit);
-    if (limit <= 7) {
+    if (limit <= 7 && limit > 0) {
       dis.push(item);
     }
   });

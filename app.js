@@ -3,7 +3,10 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const passport = require("passport");
 const session = require("express-session");
+const flash = require('connect-flash');
+const LocalStrategy = require("passport-local").Strategy;
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -16,19 +19,14 @@ const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const topRouter = require("./routes/top");
 const signupRouter = require("./routes/signup");
+<<<<<<< HEAD
 const boardRoutor = require("./routes/board");
+=======
+>>>>>>> feature/akito-login
 const teamsRouter = require("./routes/teams");
 const addTeamRouter = require("./routes/addTeam");
 
 var app = express();
-
-app.use(
-  session({
-    secret: "secret", //secret属性は指定した文字列を使ってクッキーIDを暗号化しクッキーIDが書き換えらているかを判断する。
-    resave: false, //resaveはセッションにアクセスすると上書きされるオプションらしい。今回はfalse.
-    saveUninitialized: false, //saveUninitializedは未初期化状態のセッションも保存するようなオプション。今回はfalse.
-  })
-);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -40,15 +38,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use((req, res, next) => {
-  if (req.session.userId === undefined) {
-    res.locals.username = "Guest";
-    res.locals.isLoggedIn = false;
-  } else {
-    res.locals.username = req.session.username;
-    res.locals.isLoggedIn = true;
-  }
-  next();
+
+app.use(flash());
+
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      _expires: 1000 * 60 * 5,
+    },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// // session
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function (user, done) {
+  done(null, user);
 });
 
 app.use("/users", usersRouter);
