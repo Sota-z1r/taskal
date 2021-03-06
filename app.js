@@ -5,7 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const passport = require("passport");
 const session = require("express-session");
-const flash = require('connect-flash');
+const flash = require("connect-flash");
 const LocalStrategy = require("passport-local").Strategy;
 
 var indexRouter = require("./routes/index");
@@ -19,12 +19,10 @@ const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const topRouter = require("./routes/top");
 const signupRouter = require("./routes/signup");
-<<<<<<< HEAD
 const boardRoutor = require("./routes/board");
-=======
->>>>>>> feature/akito-login
 const teamsRouter = require("./routes/teams");
 const addTeamRouter = require("./routes/addTeam");
+const inviteTeamRouter = require("./routes/inviteTeam");
 
 var app = express();
 
@@ -37,7 +35,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
 
 app.use(flash());
 
@@ -76,6 +73,8 @@ app.post("/logout", logoutRouter);
 app.get("/teams", teamsRouter);
 app.get("/addTeam", addTeamRouter);
 app.post("/addTeam", addTeamRouter);
+app.get("/inviteTeam", inviteTeamRouter);
+app.post("/inviteTeam", inviteTeamRouter);
 
 app.get("/:hashId", getTodosRoutor);
 app.post("/add", addRoutor);

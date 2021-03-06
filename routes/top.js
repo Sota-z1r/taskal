@@ -73,7 +73,9 @@ router.get("/top", (req, res, next) => {
   res.render("top", { mailErrors: [], passErrors: [] });
 });
 
-router.post("/top", checkNotAuthenticated,
+router.post(
+  "/top",
+  checkNotAuthenticated,
   function (req, res, next) {
     console.log("現在top");
     if (req.body.email.length <= 0 || req.body.password.length <= 0) {
@@ -88,67 +90,5 @@ router.post("/top", checkNotAuthenticated,
     failureFlash: true,
   })
 );
-
-
-
-
-
-
-  // (req, res, next) => {
-  //   let mailErrors = [];
-  //   let passErrors = [];
-  //   const email = req.body.email;
-  //   const password = req.body.password;
-  //   const reg = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
-  //   if (email === "") {
-  //     mailErrors.push("Eメールを入力してください。");
-  //   }
-  //   if (password === "") {
-  //     passErrors.push("パスワードを入力してください。");
-  //   }
-  //   if (reg.test(email) === false && email != "") {
-  //     mailErrors.push("有効なメールアドレスを入力してください。");
-  //   }
-  //   if (mailErrors.length > 0 || passErrors.length > 0) {
-  //     //エラーがあったとき
-  //     res.render("top", { mailErrors: mailErrors, passErrors: passErrors });
-  //   } else {
-  //     next();
-  //   }
-  // },
-  // (req, res, next) => {
-  //   let mailErrors = [];
-  //   let passErrors = [];
-  //   const email = req.body.email;
-  //   const password = req.body.password;
-  //   const sql = "SELECT * FROM users WHERE email = ?";
-  //   connection.query(sql, email, (error, results) => {
-  //     if (results[0] != null) {
-  //       if (bcrypt.compareSync(password, results[0].password)) {
-  //         //ログイン成功
-  //         req.session.userId = results[0].id;
-  //         req.session.username = results[0].username;
-  //         console.log("top "+req.session.userId);
-  //         res.redirect("/teams");
-  //       } else {
-  //         //パスワードが違う
-  //         passErrors.push("パスワードが違います。");
-  //         res.render("top", { mailErrors: [], passErrors: passErrors });
-  //       }
-  //     } else {
-  //       if (email != "") {
-  //         //Eメールが見つからないとき
-  //         mailErrors.push("Eメールが見つかりません。");
-  //         res.render("top", { mailErrors: mailErrors, passErrors: [] });
-  //       } else {
-  //         //無記入
-  //         mailErrors.push("Eメールを入力してください。");
-  //         passErrors.push("パスワードを入力してください。");
-  //         res.render("top", { mailErrors: mailErrors, passErrors: passErrors });
-  //       }
-  //     }
-  //   });
-  // }
-
 
 module.exports = router;

@@ -18,7 +18,7 @@ router.get("/addTeam", (req, res, next) => {
 
 router.post("/addTeam", (req, res, next) => {
   const teamName = req.body.teamName;
-  const userId = req.session.userId;
+  const userId = req.user.id;
   const now = new Date();
   const plain =
     teamName +
@@ -29,6 +29,7 @@ router.post("/addTeam", (req, res, next) => {
     now.getMinutes();
   const hash = bcrypt.hashSync(plain, 5);
   console.log("addTeam " + hash);
+  console.log(req);
   const sql =
     "INSERT INTO teams(teamName, user_id, hashedTeamId) VALUES(?,?,?);";
   connection.query(sql, [teamName, userId, hash], (error, results) => {

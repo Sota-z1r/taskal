@@ -84,27 +84,6 @@ router.post("/register", async function (req, res, next) {
   res.redirect("/users/login");
 });
 
-// // topへ
-// router.get("/login", checkNotAuthenticated, function (req, res, next) {
-//   res.render("top", { passErrors: [], mailErrors: []});
-// });
-
-// router.post(
-//   "/login",
-//   function (req, res, next) {
-//     if (req.body.email.length <= 0 || req.body.password.length <= 0) {
-//       return res.redirect("/users/top");
-//     }
-//     next();
-//   },
-//   passport.authenticate("local", {
-//     successRedirect: "/teams",
-//     failureRedirect: "/users/top",
-//     failureFlash: true,
-//   })
-// );
-
-// logout
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/users/login");
