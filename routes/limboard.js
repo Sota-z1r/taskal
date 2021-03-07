@@ -4,17 +4,18 @@ const mysql = require("mysql");
 var moment = require("moment");
 const connection = require("./connection.js");
 
-function limboard(sql) {
+function limboard(sql, hashId) {
   return new Promise((resolve) => {
-    connection.query(sql, function (err, rows, fields) {
+    connection.query(sql, hashId, function (err, rows, fields) {
       resolve(rows);
     });
   });
 }
 
 router.get("/limboard/:hashId", async function (req, res, next) {
-  const sql = 'SELECT * FROM todos WHERE state != "0";';
-  const todos = await limboard(sql);
+  const sql = "SELECT * FROM todos WHERE state != 0 AND team_id = ?;";
+  const hashId = req.params.hashId;
+  const todos = await limboard(sql, hashId);
   let now = new moment().format("YYYY-MM-DD");
   let dislim = [];
   todos.forEach(function (item) {

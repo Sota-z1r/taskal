@@ -4,7 +4,7 @@ const mysql = require("mysql");
 var moment = require("moment");
 const connection = require("./connection.js");
 
-function board(sql) {
+function board(sql, hashId) {
   return new Promise((resolve) => {
     const connection = mysql.createConnection({
       host: "us-cdbr-east-03.cleardb.com",
@@ -15,15 +15,16 @@ function board(sql) {
       dateStrings: "date",
     });
     connection.connect();
-    connection.query(sql, function (err, rows, fields) {
+    connection.query(sql, hashId, function (err, rows, fields) {
       resolve(rows);
     });
   });
 }
 
 router.get("/board/:hashId", async function (req, res, next) {
-  const sql = 'SELECT * FROM todos WHERE state != "0";';
-  const todos = await board(sql);
+  const sql = "SELECT * FROM todos WHERE state != 0 AND team_id = ?;";
+  const hashId = req.params.hashId;
+  const todos = await board(sql, hashId);
   let now = new moment().format("YYYY-MM-DD");
   let dis = [];
   todos.forEach(function (item) {
