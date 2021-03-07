@@ -14,7 +14,7 @@ const board = function () {
 };
 
 const printLimit = function (dis) {
-  const limitList = document.getElementById("limit");
+  const limitList = document.getElementById("limitList");
   dis.forEach((item) => {
     const todo_date = item.date;
     console.log(typeof(item.date));

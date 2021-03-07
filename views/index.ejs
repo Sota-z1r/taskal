@@ -9,13 +9,15 @@
     <script src="/javascripts/main.js"></script>
     <script src="/javascripts/limit.js"></script>
     <script src="/javascripts/expired.js"></script>
+    <script src="/javascripts/style.js"></script>
   </head>
   <body>
     <%- include("header"); %>
-
+    
     <div class="content">
       <div class="inputArea">
         <h1 class="appTitle"><%= title %></h1>
+       
         <div class="inputTodo">
           <form action="/add" method="POST">
             <input
@@ -43,10 +45,9 @@
           <h2 class="title">DoneList</h2>
           <ul class="doneList" id="doneList"></ul>
         </div>
-        <div>
           <div class="list">
             <h2 class="title">Limit</h2>
-            <ul class="limit" id="limit"></ul>
+            <ul class="limitList" id="limitList"></ul>
         </div>
       </div>
     </div>

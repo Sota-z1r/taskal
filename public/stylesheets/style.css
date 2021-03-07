@@ -6,6 +6,7 @@
 
 .inputArea {
   height: 20vh;
+  background-color:darkorange;
 }
 
 .lists {
@@ -16,6 +17,7 @@
 .appTitle {
   margin: 0;
   padding-top: 0.5rem;
+  color: aliceblue;
 }
 
 .addText {
@@ -27,11 +29,17 @@
 .addBtn {
   width: 30%;
   margin: 0.5rem;
+  cursor: pointer;
+}
+
+#date{
+  cursor: pointer;
 }
 
 /* list */
 .lists {
   display: flex;
+  background-color: darkorange;
 }
 
 .list {
@@ -46,7 +54,8 @@
 
 .todoList,
 .doingList,
-.doneList {
+.doneList,
+.limitList {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -56,7 +65,8 @@
 
 .todo,
 .doing,
-.done {
+.done,
+.limit {
   margin: 1rem;
   border: 1px solid;
   padding: 1rem;
@@ -67,3 +77,14 @@
   display: inline-block;
   margin: 0 1rem;
 }
+
+#doingBtn,
+#doneBtn,
+#deleteBtn{
+  cursor: pointer;
+}
+
+.title{
+  color: aliceblue;
+}
+

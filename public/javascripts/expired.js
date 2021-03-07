@@ -14,7 +14,7 @@ const limboard = function () {
 };
 
 const printLimboard = function (dislim) {
-  const limitList = document.getElementById("limit");
+  const limitList = document.getElementById("limitList");
   dislim.forEach((item) => {
     const expired_date = item.date;
     console.log(typeof(item.date));
