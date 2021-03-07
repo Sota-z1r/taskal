@@ -2,13 +2,12 @@
 
 const limboard = function () {
   const request = new XMLHttpRequest();
-  const requestURL = "/limboard";
+  const requestURL = "/limboard/" + location.pathname.substr(11);
   request.open("GET", requestURL);
   request.responseType = "json";
   request.send();
   request.onload = function () {
     const dislim = request.response;
-    console.log(dislim);
     printLimboard(dislim);
   };
 };
@@ -17,7 +16,6 @@ const printLimboard = function (dislim) {
   const limitList = document.getElementById("limitList");
   dislim.forEach((item) => {
     const expired_date = item.date;
-    console.log(typeof(item.date));
     const expiredText = item.todo;
     // liを作る
     const li = document.createElement("li");
@@ -32,7 +30,6 @@ const printLimboard = function (dislim) {
     q.className = "expired_date";
     li.appendChild(p);
     li.appendChild(q);
-    
   });
 };
 

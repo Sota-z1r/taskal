@@ -86,7 +86,7 @@ router.post(
       (error, results) => {
         req.session.userId = results.insertId; //INSERTクエリが成功すると、特に設定しなくても、追加したレコードのidがresultsオブジェクトのinsertIdというプロパティに入る
         req.session.username = username;
-        res.redirect("/");
+        res.redirect("/teams");
       }
     );
   }

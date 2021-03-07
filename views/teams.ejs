@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <div>
+      <a href="/addTeam">チームを追加</a>
+    </div>
+    <% if(teams.length > 0){ %>
+    <div align="center">
+      <% teams.forEach((team)=>{ %>
+      <!-- 実装時にURLを変える。 -->
+      <li>
+        <a href="http://localhost:3000/Todoboard/<%= team.hashedTeamId %>"
+          ><%= team.teamName %></a
+        >
+      </li>
+      <% }); %>
+    </div>
+    <% } %>
+  </body>
+</html>
