@@ -77,9 +77,7 @@ router.post(
   "/top",
   checkNotAuthenticated,
   function (req, res, next) {
-    console.log("現在top");
     if (req.body.email.length <= 0 || req.body.password.length <= 0) {
-      console.log("/topへ");
       return res.redirect("/top");
     }
     next();

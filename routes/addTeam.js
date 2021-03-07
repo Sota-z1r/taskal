@@ -28,8 +28,6 @@ router.post("/addTeam", (req, res, next) => {
     now.getHours() +
     now.getMinutes();
   const hash = bcrypt.hashSync(plain, 5);
-  console.log("addTeam " + hash);
-  console.log(req);
   const sql =
     "INSERT INTO teams(teamName, user_id, hashedTeamId) VALUES(?,?,?);";
   connection.query(sql, [teamName, userId, hash], (error, results) => {

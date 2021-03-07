@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="/stylesheets/header.css" />
     <link rel="stylesheet" href="/stylesheets/limit.css" />
-    <script src="/javascripts/main.js"></script>
-    <script src="/javascripts/limit.js"></script>
-    <script src="/javascripts/expired.js"></script>
   </head>
   <body>
     <%- include("header"); %>
@@ -16,18 +13,7 @@
     <div class="content">
       <div class="inputArea">
         <h1 class="appTitle"><%= title %></h1>
-        <div class="inputTodo">
-          <form action="/add" method="POST">
-            <input
-              class="addText"
-              type="text"
-              name="todo"
-              placeholder="input todo"
-            />
-            <button class="addBtn" type="submit">add</button>
-            <input id="date" type="date" name="date" value="">
-          </form>
-        </div>
+        <div class="inputTodo" id="inputTodo"></div>
       </div>
 
       <div class="lists">
@@ -51,4 +37,8 @@
       </div>
     </div>
   </body>
+
+  <script src="/javascripts/main.js"></script>
+  <script src="/javascripts/limit.js"></script>
+  <script src="/javascripts/expired.js"></script>
 </html>

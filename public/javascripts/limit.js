@@ -3,23 +3,19 @@
 const board = function () {
   const request = new XMLHttpRequest();
   const requestURL = "/board/" + location.pathname.substr(11);
-  console.log(requestURL);
   request.open("GET", requestURL);
   request.responseType = "json";
   request.send();
   request.onload = function () {
     const dis = request.response;
-    console.log(dis);
     printLimit(dis);
   };
 };
 
 const printLimit = function (dis) {
   const limitList = document.getElementById("limit");
-  console.log(dis);
   dis.forEach((item) => {
     const todo_date = item.date;
-    console.log(typeof(item.date));
     const limitText = item.todo;
     // liを作る
     const li = document.createElement("li");

@@ -8,7 +8,6 @@ const limboard = function () {
   request.send();
   request.onload = function () {
     const dislim = request.response;
-    console.log(dislim);
     printLimboard(dislim);
   };
 };
@@ -17,7 +16,6 @@ const printLimboard = function (dislim) {
   const limitList = document.getElementById("limit");
   dislim.forEach((item) => {
     const expired_date = item.date;
-    console.log(typeof item.date);
     const expiredText = item.todo;
     // liを作る
     const li = document.createElement("li");

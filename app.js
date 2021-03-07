@@ -20,6 +20,7 @@ const logoutRouter = require("./routes/logout");
 const topRouter = require("./routes/top");
 const signupRouter = require("./routes/signup");
 const boardRoutor = require("./routes/board");
+const limboardRouter = require("./routes/limboard");
 const teamsRouter = require("./routes/teams");
 const addTeamRouter = require("./routes/addTeam");
 const inviteTeamRouter = require("./routes/inviteTeam");
@@ -77,12 +78,13 @@ app.get("/inviteTeam", inviteTeamRouter);
 app.post("/inviteTeam", inviteTeamRouter);
 
 app.get("/:hashId", getTodosRoutor);
-app.post("/add", addRoutor);
+app.post("/add/:hashId", addRoutor);
 app.post("/delete/:todoid", deleteRoutor);
 app.post("/transDoing/:todoid", transDoingRoutor);
 app.post("/transDone/:todoid", transDoneRoutor);
 app.post("/delete/:todoid", deleteRoutor);
-app.get("/board/:hashedId", boardRoutor);
+app.get("/board/:hashId", boardRoutor);
+app.get("/limboard/:hashId", limboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

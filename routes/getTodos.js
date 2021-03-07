@@ -12,7 +12,6 @@ function getTodos(sql, hashedId) {
 
 router.get("/:hashId", async function (req, res, next) {
   const hashedId = req.params.hashId;
-  console.log(hashedId);
   const sql = "SELECT * FROM todos WHERE state != 0 && team_id = ?;";
   const todos = await getTodos(sql, hashedId);
   req.session.hashedId = hashedId;

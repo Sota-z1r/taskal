@@ -1,9 +1,35 @@
 "use strict";
 
+const addTodos = function () {
+  const hashId = location.pathname.substr(10);
+  const addTodo = document.getElementById("inputTodo");
+  const addform = document.createElement("form");
+  addform.classname = "addform";
+  addform.action = "/add" + hashId;
+  addform.method = "POST";
+  addTodo.appendChild(addform);
+  const addinput = document.createElement("input");
+  addinput.className = "addText";
+  addinput.type = "text";
+  addinput.name = "todo";
+  addinput.placeholder = "input todo";
+  const addBtn = document.createElement("button");
+  addBtn.className = "addBtn";
+  addBtn.type = "submit";
+  addBtn.innerHTML = "add";
+  const addDate = document.createElement("input");
+  addDate.id = "date";
+  addDate.type = "date";
+  addDate.name = "date";
+  addDate.value = "";
+  addform.appendChild(addinput);
+  addform.appendChild(addBtn);
+  addform.appendChild(addDate);
+};
+
 const getTodos = function () {
   const request = new XMLHttpRequest();
   const requestURL = location.pathname.substr(10);
-  console.log("main-> " + requestURL);
   request.open("GET", requestURL);
   request.responseType = "json";
   request.send();
@@ -153,6 +179,8 @@ const printDones = function (dones) {
   });
 };
 
+const addTodo = function (addTodo) {};
+
 const deleteTodo = function (todoId) {
   const form = document.getElementById("deleteForm" + todoId);
   form.action = form.action + todoId;
@@ -171,4 +199,5 @@ const transDone = function (doneId) {
   form.submit();
 };
 
+addTodos();
 getTodos();

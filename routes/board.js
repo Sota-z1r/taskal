@@ -25,22 +25,16 @@ router.get("/board/:hashId", async function (req, res, next) {
   const sql = 'SELECT * FROM todos WHERE state != "0";';
   const todos = await board(sql);
   let now = new moment().format("YYYY-MM-DD");
-  console.log(now);
   let dis = [];
   todos.forEach(function (item) {
-    console.log(item.date);
     let date = item.date;
-    console.log(typeof now);
-    console.log(typeof date);
     let today = Date.parse(now);
     let tasklim = Date.parse(date);
     const limit = (tasklim - today) / 86400000;
-    console.log(limit);
     if (limit <= 7 && limit > 0) {
       dis.push(item);
     }
   });
-  console.log(dis);
   res.json(dis);
 });
 
