@@ -14,9 +14,11 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "install": "^0.13.0",
     "moment": "^2.29.1",
     "morgan": "^1.9.1",
     "mysql": "^2.18.1",
+    "npm": "^7.6.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
   },

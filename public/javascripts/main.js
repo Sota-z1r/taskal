@@ -1,8 +1,35 @@
 "use strict";
 
+const addTodos = function () {
+  const hashId = location.pathname.substr(10);
+  const addTodo = document.getElementById("inputTodo");
+  const addform = document.createElement("form");
+  addform.classname = "addform";
+  addform.action = "/add" + hashId;
+  addform.method = "POST";
+  addTodo.appendChild(addform);
+  const addinput = document.createElement("input");
+  addinput.className = "addText";
+  addinput.type = "text";
+  addinput.name = "todo";
+  addinput.placeholder = "input todo";
+  const addBtn = document.createElement("button");
+  addBtn.className = "addBtn";
+  addBtn.type = "submit";
+  addBtn.innerHTML = "add";
+  const addDate = document.createElement("input");
+  addDate.id = "date";
+  addDate.type = "date";
+  addDate.name = "date";
+  addDate.value = "";
+  addform.appendChild(addinput);
+  addform.appendChild(addBtn);
+  addform.appendChild(addDate);
+};
+
 const getTodos = function () {
   const request = new XMLHttpRequest();
-  const requestURL = "/gettodos";
+  const requestURL = location.pathname.substr(10);
   request.open("GET", requestURL);
   request.responseType = "json";
   request.send();
@@ -141,12 +168,18 @@ const printDones = function (dones) {
     // 期限超過のタスクを消去
     const now = new Date();
     const month_1 = now.getMonth() + 1;
+    const date_1 = now.getDate();
     const month_2 = [];
+    const date_2 = [];
     if (month_1 < 10) month_2[0] = "0" + month_1;
-    const nowDate = now.getFullYear() + "-" + month_2 + "-" + now.getDate();
+    if (date_1 < 10) date_2[0] = "0" + date_1;
+    const nowDate = now.getFullYear() + "-" + month_2 + "-" + date_2;
+    window.alert(nowDate + " " + doneDate);
     if (nowDate > doneDate) deleteTodo(doneId);
   });
 };
+
+const addTodo = function (addTodo) {};
 
 const deleteTodo = function (todoId) {
   const form = document.getElementById("deleteForm" + todoId);
@@ -166,4 +199,5 @@ const transDone = function (doneId) {
   form.submit();
 };
 
+addTodos();
 getTodos();

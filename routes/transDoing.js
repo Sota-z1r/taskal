@@ -14,7 +14,7 @@ router.post("/transDoing/:todoid", async function (req, res, next) {
   const todoId = req.params.todoid;
   const sql = "UPDATE todos SET state = 2 WHERE todo_id = ?;";
   await changeTodoState(sql, todoId);
-  res.redirect("/");
+  res.redirect("/Todoboard/" + req.session.hashedId);
 });
 
 module.exports = router;
