@@ -89,4 +89,9 @@ router.post(
   })
 );
 
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/top");
+});
+
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
+const { checkAuthenticated } = require("../config/auth");
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ const connection = mysql.createConnection({
   database: "heroku_27791ce74a042e7",
 });
 
-router.get("/addTeam", (req, res, next) => {
+router.get("/addTeam", checkAuthenticated, (req, res, next) => {
   res.render("addTeam", { teamNameErrors: [] });
 });
 

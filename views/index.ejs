@@ -9,11 +9,10 @@
     <script src="/javascripts/style.js"></script>
   </head>
   <body>
-    <%- include("header"); %>
-
     <div class="content">
       <div class="inputArea">
         <h1 class="appTitle"><%= title %></h1>
+        <div class="user"><ul class="acct" id="acct"></ul></div>
         <div class="inputTodo" id="inputTodo"></div>
       </div>
 
@@ -38,6 +37,7 @@
     </div>
   </body>
 
+  <script src="/javascripts/header.js"></script>
   <script src="/javascripts/main.js"></script>
   <script src="/javascripts/limit.js"></script>
   <script src="/javascripts/expired.js"></script>

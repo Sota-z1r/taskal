@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const connection = require("./connection.js");
+const { checkAuthenticated } = require("../config/auth");
 
 function getTodos(sql, hashedId) {
   return new Promise((resolve) => {
@@ -10,7 +11,7 @@ function getTodos(sql, hashedId) {
   });
 }
 
-router.get("/:hashId", async function (req, res, next) {
+router.get("/:hashId", checkAuthenticated, async function (req, res, next) {
   const hashedId = req.params.hashId;
   const sql = "SELECT * FROM todos WHERE state != 0 && team_id = ?;";
   const todos = await getTodos(sql, hashedId);

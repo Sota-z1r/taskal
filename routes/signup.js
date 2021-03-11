@@ -1,8 +1,8 @@
 const express = require("express");
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
-
 const router = express.Router();
+const { checkAuthenticated } = require("../config/auth");
 
 const connection = mysql.createConnection({
   host: "us-cdbr-east-03.cleardb.com",
@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
   database: "heroku_27791ce74a042e7",
 });
 
-router.get("/signup", (req, res, next) => {
+router.get("/signup", checkAuthenticated, (req, res, next) => {
   let errors = [];
   res.render("signup", { usernameErrors: [], mailErrors: [], passErrors: [] });
 });

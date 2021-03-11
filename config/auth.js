@@ -4,12 +4,12 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     }
-    res.redirect("/users/login");
+    res.redirect("/top");
   },
   //checkNotAuthenticated
   checkNotAuthenticated: function (req, res, next) {
     if (req.isAuthenticated()) {
-      return res.redirect("/");
+      return res.redirect("/top");
     }
     next();
   },
