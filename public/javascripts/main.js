@@ -187,9 +187,7 @@ const deleteTodo = function (todoId) {
 
 const transDoing = function (doingId) {
   const form = document.getElementById("transForm_1to2" + doingId);
-  console.log(form.action);
   form.action = form.action + "/" + doingId;
-  console.log(form.action);
   form.submit();
 };
 

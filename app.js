@@ -23,6 +23,8 @@ const limboardRouter = require("./routes/limboard");
 const teamsRouter = require("./routes/teams");
 const addTeamRouter = require("./routes/addTeam");
 const inviteTeamRouter = require("./routes/inviteTeam");
+const teamslistRouter = require("./routes/teamslist");
+const deleteTeamRouter = require("./routes/deleteTeam");
 
 var app = express();
 
@@ -69,6 +71,8 @@ app.post("/signup", signupRouter);
 app.get("/logout", logoutRouter);
 app.post("/logout", logoutRouter);
 app.get("/teams", teamsRouter);
+app.get("/teamslist", teamslistRouter);
+app.post("/deleteTeam/:teamId", deleteTeamRouter);
 app.get("/addTeam", addTeamRouter);
 app.post("/addTeam", addTeamRouter);
 app.get("/inviteTeam", inviteTeamRouter);
