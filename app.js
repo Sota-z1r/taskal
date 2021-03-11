@@ -15,7 +15,6 @@ const addRoutor = require("./routes/add");
 const deleteRoutor = require("./routes/delete");
 const transDoingRoutor = require("./routes/transDoing");
 const transDoneRoutor = require("./routes/transDone");
-const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/top");
 const topRouter = require("./routes/top");
 const signupRouter = require("./routes/signup");
@@ -60,15 +59,13 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-app.use("/users", usersRouter);
+//app.use("/users", usersRouter);
 
 app.get("/Todoboard/:hashId", indexRouter);
 app.get("/top", topRouter);
 app.post("/top", topRouter);
 app.get("/signup", signupRouter);
 app.post("/signup", signupRouter);
-app.get("/login", loginRouter);
-app.post("/login", loginRouter);
 app.get("/logout", logoutRouter);
 app.post("/logout", logoutRouter);
 app.get("/teams", teamsRouter);

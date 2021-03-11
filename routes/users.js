@@ -1,3 +1,4 @@
+/*
 var express = require("express");
 var router = express.Router();
 const mysql = require("mysql");
@@ -85,3 +86,4 @@ router.post("/register", async function (req, res, next) {
 });
 
 module.exports = router;
+*/
