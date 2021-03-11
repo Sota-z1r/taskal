@@ -1,7 +1,8 @@
 "use strict";
 
+const hashId = location.pathname.substr(10);
+
 const addTodos = function () {
-  const hashId = location.pathname.substr(10);
   const addTodo = document.getElementById("inputTodo");
   const addform = document.createElement("form");
   addform.classname = "addform";
@@ -68,7 +69,7 @@ const printTodos = function (todos) {
     // transformを作る
     const transform = document.createElement("form");
     transform.className = "transform";
-    transform.action = "/transDoing/";
+    transform.action = "/transDoing" + hashId;
     transform.method = "POST";
     transform.id = "transForm_1to2" + todoId;
     li.appendChild(transform);
@@ -81,7 +82,7 @@ const printTodos = function (todos) {
     // deletformを作る
     const deleteform = document.createElement("form");
     deleteform.className = "deleteform";
-    deleteform.action = "/delete/";
+    deleteform.action = "/delete" + hashId;
     deleteform.method = "POST";
     deleteform.id = "deleteForm" + todoId;
     li.appendChild(deleteform);
@@ -111,14 +112,14 @@ const printDoings = function (doings) {
     // transformを作る
     const transform = document.createElement("form");
     transform.className = "transform";
-    transform.action = "/transDone/";
+    transform.action = "/transDone" + hashId;
     transform.method = "POST";
     transform.id = "transForm_2to3" + doingId;
     li.appendChild(transform);
     // deletformを作る
     const deleteform = document.createElement("form");
     deleteform.className = "deleteform";
-    deleteform.action = "/delete/";
+    deleteform.action = "/delete" + hashId;
     deleteform.method = "POST";
     deleteform.id = "deleteForm" + doingId;
     li.appendChild(deleteform);
@@ -155,7 +156,7 @@ const printDones = function (dones) {
     // deletformを作る
     const deleteform = document.createElement("form");
     deleteform.className = "deleteform";
-    deleteform.action = "/delete/";
+    deleteform.action = "/delete" + hashId;
     deleteform.method = "POST";
     deleteform.id = "deleteForm" + doneId;
     li.appendChild(deleteform);
@@ -174,28 +175,27 @@ const printDones = function (dones) {
     if (month_1 < 10) month_2[0] = "0" + month_1;
     if (date_1 < 10) date_2[0] = "0" + date_1;
     const nowDate = now.getFullYear() + "-" + month_2 + "-" + date_2;
-    window.alert(nowDate + " " + doneDate);
     if (nowDate > doneDate) deleteTodo(doneId);
   });
 };
 
-const addTodo = function (addTodo) {};
-
 const deleteTodo = function (todoId) {
   const form = document.getElementById("deleteForm" + todoId);
-  form.action = form.action + todoId;
+  form.action = form.action + "/" + todoId;
   form.submit();
 };
 
 const transDoing = function (doingId) {
   const form = document.getElementById("transForm_1to2" + doingId);
-  form.action = form.action + doingId;
+  console.log(form.action);
+  form.action = form.action + "/" + doingId;
+  console.log(form.action);
   form.submit();
 };
 
 const transDone = function (doneId) {
   const form = document.getElementById("transForm_2to3" + doneId);
-  form.action = form.action + doneId;
+  form.action = form.action + "/" + doneId;
   form.submit();
 };
 

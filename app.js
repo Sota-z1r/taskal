@@ -79,10 +79,9 @@ app.post("/inviteTeam", inviteTeamRouter);
 
 app.get("/:hashId", getTodosRoutor);
 app.post("/add/:hashId", addRoutor);
-app.post("/delete/:todoid", deleteRoutor);
-app.post("/transDoing/:todoid", transDoingRoutor);
-app.post("/transDone/:todoid", transDoneRoutor);
-app.post("/delete/:todoid", deleteRoutor);
+app.post("/delete/:hashId/:todoid", deleteRoutor);
+app.post("/transDoing/:hashId/:todoid", transDoingRoutor);
+app.post("/transDone/:hashId/:todoid", transDoneRoutor);
 app.get("/board/:hashId", boardRoutor);
 app.get("/limboard/:hashId", limboardRouter);
 

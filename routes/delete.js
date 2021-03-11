@@ -10,11 +10,12 @@ function changeTodoState(sql, todoId) {
   });
 }
 
-router.post("/delete/:todoid", async function (req, res, next) {
+router.post("/delete/:hashId/:todoid", async function (req, res, next) {
   const todoId = req.params.todoid;
+  const hashId = req.params.hashId;
   const sql = "UPDATE todos SET state = 0 WHERE todo_id = ?;";
   await changeTodoState(sql, todoId);
-  res.redirect("/Todoboard/" + req.session.hashedId);
+  res.redirect("/Todoboard/" + hashId);
 });
 
 module.exports = router;
