@@ -3,14 +3,7 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const { checkAuthenticated } = require("../config/auth");
-
-const connection = mysql.createConnection({
-  host: "us-cdbr-east-03.cleardb.com",
-  port: 3306,
-  user: "b398803bdf1570",
-  password: "8ae8b4f2",
-  database: "heroku_27791ce74a042e7",
-});
+const createConnection = require("./pool.js");
 
 router.get("/signup", checkAuthenticated, (req, res, next) => {
   let errors = [];
@@ -49,11 +42,13 @@ router.post(
       next();
     }
   },
-  (req, res, next) => {
+  async (req, res, next) => {
     let mailErrors = [];
     let reg = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/; //正規表現
     const email = req.body.email;
     const sql = "SELECT * FROM users WHERE email = ?";
+    const connectio = await createConnection();
+    connectio.connect();
     connection.query(sql, email, (error, results) => {
       if (reg.test(email) === false) {
         //有効なメールか確認
@@ -73,13 +68,16 @@ router.post(
         next(); //次のミドルウェアに渡す役割 next();
       }
     });
+    connectio.end();
   },
-  (req, res, next) => {
+  async (req, res, next) => {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
     const hashed_password = bcrypt.hashSync(password, 10); //passwordを暗号化
     const sql = "INSERT INTO users(username, email, password) VALUES(?, ?, ?)";
+    const connection = await createConnection();
+    connectio.connect();
     connection.query(
       sql,
       [username, email, hashed_password],
@@ -89,6 +87,7 @@ router.post(
         res.redirect("/teams");
       }
     );
+    connectio.end();
   }
 );
 

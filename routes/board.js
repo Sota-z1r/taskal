@@ -3,18 +3,11 @@ var router = express.Router();
 const mysql = require("mysql");
 var moment = require("moment");
 const { checkAuthenticated } = require("../config/auth");
-const connection = require("./connection.js");
+const createConnection = require("./pool");
 
 function board(sql, hashId) {
-  return new Promise((resolve) => {
-    const connection = mysql.createConnection({
-      host: "us-cdbr-east-03.cleardb.com",
-      port: 3306,
-      user: "b398803bdf1570",
-      password: "8ae8b4f2",
-      database: "heroku_27791ce74a042e7",
-      dateStrings: "date",
-    });
+  return new Promise(async (resolve) => {
+    const connection = await createConnection();
     connection.connect();
     connection.query(sql, hashId, function (err, rows, fields) {
       resolve(rows);

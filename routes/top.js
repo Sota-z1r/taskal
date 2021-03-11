@@ -4,25 +4,9 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const { checkNotAuthenticated } = require("../config/auth");
+const createConnection = require("./pool.js");
 
 const router = express.Router();
-
-const pool = mysql.createPool({
-  host: "us-cdbr-east-03.cleardb.com",
-  port: 3306,
-  user: "b398803bdf1570",
-  password: "8ae8b4f2",
-  database: "heroku_27791ce74a042e7",
-});
-
-const createConnection = function () {
-  return new Promise((resolve, reject) => {
-    pool.getConnection((error, connection) => {
-      if (error) reject(error);
-      resolve(connection);
-    });
-  });
-};
 
 passport.use(
   new LocalStrategy(

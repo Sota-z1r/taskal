@@ -1,13 +1,16 @@
 var express = require("express");
 var router = express.Router();
-const connection = require("./connection.js");
+const createConnection = require("./pool.js");
 const { checkAuthenticated } = require("../config/auth");
 
 function getTodos(sql, hashedId) {
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
+    const connection = await createConnection();
+    connection.connect();
     connection.query(sql, hashedId, function (err, rows, fields) {
       resolve(rows);
     });
+    connection.end();
   });
 }
 

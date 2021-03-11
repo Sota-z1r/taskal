@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const connection = require("./connection.js");
+const createConnection = require("./pool.js");
 
 function insertTodo(sql, todo, state, date, hashedId) {
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
+    const connection = await createConnection();
+    connection.connect();
     connection.query(
       sql,
       [todo, state, date, hashedId],
@@ -11,6 +13,7 @@ function insertTodo(sql, todo, state, date, hashedId) {
         resolve(rows);
       }
     );
+    connection.end();
   });
 }
 

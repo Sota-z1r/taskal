@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const connection = require("./connection.js");
+const createConnection = require("./pool.js");
 
 function changeTodoState(sql, todoId) {
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
+    const connection = await createConnection();
+    connection.connect();
     connection.query(sql, todoId, function (err, rows, fields) {
       resolve(rows);
     });
+    connection.end();
   });
 }
 
