@@ -1,8 +1,8 @@
 header {
   display: flex;
-  width: 1000px;
+  width: 100%;
   height: 100px;
-  background-color: gray;
+  background-color:darkorange;
   align-items: center;
 }
 
