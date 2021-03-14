@@ -21,6 +21,7 @@ const signupRouter = require("./routes/signup");
 const boardRoutor = require("./routes/board");
 const limboardRouter = require("./routes/limboard");
 const teamsRouter = require("./routes/teams");
+const getNameRouter = require("./routes/getName");
 const addTeamRouter = require("./routes/addTeam");
 const inviteTeamRouter = require("./routes/inviteTeam");
 const teamslistRouter = require("./routes/teamslist");
@@ -78,6 +79,7 @@ app.post("/addTeam", addTeamRouter);
 app.get("/inviteTeam", inviteTeamRouter);
 app.post("/inviteTeam", inviteTeamRouter);
 
+app.get("/getName/:hashId", getNameRouter);
 app.get("/:hashId", getTodosRoutor);
 app.post("/add/:hashId", addRoutor);
 app.post("/delete/:hashId/:todoid", deleteRoutor);

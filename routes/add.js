@@ -20,8 +20,6 @@ function insertTodo(sql, todo, state, date, hashedId) {
 router.post("/add/:hashId", async function (req, res, next) {
   const todo = req.body.todo;
   const date = req.body.date;
-  console.log(todo);
-  console.log(date);
   const sql =
     "INSERT INTO todos(todo, state, date, team_id) values(?, ?, ?, ?);";
   await insertTodo(sql, todo, "1", date, req.params.hashId);

@@ -4,12 +4,12 @@ const createConnection = require("./pool.js");
 
 function changeTodoState(sql, todoId) {
   return new Promise(async (resolve) => {
-    const connectio = await createConnection();
-    connectio.connect();
+    const connection = await createConnection();
+    connection.connect();
     connection.query(sql, todoId, function (err, rows, fields) {
       resolve(rows);
     });
-    connectio.end();
+    connection.end();
   });
 }
 

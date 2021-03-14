@@ -7,12 +7,12 @@ const { checkAuthenticated } = require("../config/auth");
 
 function limboard(sql, hashId) {
   return new Promise(async (resolve) => {
-    const connectio = await createConnection();
-    connectio.connect();
+    const connection = await createConnection();
+    connection.connect();
     connection.query(sql, hashId, function (err, rows, fields) {
       resolve(rows);
     });
-    connectio.end();
+    connection.end();
   });
 }
 

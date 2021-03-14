@@ -16,7 +16,6 @@ router.post("/inviteTeam", async function (req, res, next) {
     if (await (hashedTeamId == Team[i].hashedTeamId))
       teamName[0] = Team[i].teamName;
   }
-  console.log(teamName[0], user_id, hashedTeamId);
   connection.query(
     sql_2,
     [teamName[0], user_id, hashedTeamId],
