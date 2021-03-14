@@ -26,4 +26,20 @@ const header = function (name) {
   acct.appendChild(logout);
 };
 
+const genelateURL = function () {
+  const URL = document.getElementById("URL");
+  const copyBtn = document.createElement("button");
+  copyBtn.innerHTML = "招待URLの発行";
+  copyBtn.id = "copyURL";
+  copyBtn.setAttribute("onclick", `copy()`);
+  URL.appendChild(copyBtn);
+};
+
+const copy = async function () {
+  const URLpath = location.pathname.substr(11);
+  await navigator.clipboard.writeText(URLpath);
+  alert("URLをクリップボードにコピーしました");
+};
+
 reqName();
+genelateURL();

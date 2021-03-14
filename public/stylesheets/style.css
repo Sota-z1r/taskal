@@ -5,12 +5,20 @@
 }
 
 .inputArea {
-  height: 20vh;
-  background-color:darkorange;
+  height: 30vh;
+  background-color: darkorange;
+}
+/* 
+.user_team {
+  display: flex;
 }
 
+.acct {
+  display: flex;
+} */
+
 .lists {
-  height: 80vh;
+  height: 70vh;
 }
 
 /* add form */
@@ -32,7 +40,7 @@
   cursor: pointer;
 }
 
-#date{
+#date {
   cursor: pointer;
 }
 
@@ -80,14 +88,14 @@
 
 #doingBtn,
 #doneBtn,
-#deleteBtn{
+#deleteBtn {
   cursor: pointer;
 }
 
-.title{
+.title {
   color: aliceblue;
 }
 
-header{
+header {
   justify-items: center;
 }
