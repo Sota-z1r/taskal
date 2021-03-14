@@ -5,12 +5,17 @@
 }
 
 .inputArea {
+<<<<<<< HEAD
   height: 30vh;
   background-color: darkorange;
 }
 /* 
 .user_team {
   display: flex;
+=======
+  height: 20vh;
+
+>>>>>>> feature/styling
 }
 
 .acct {
@@ -26,6 +31,7 @@
   margin: 0;
   padding-top: 0.5rem;
   color: aliceblue;
+  background-color: dodgerblue;
 }
 
 .addText {
@@ -40,14 +46,23 @@
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 #date {
+=======
+.addBtn:hover{
+  color:aliceblue;
+  background-color:dodgerblue;
+}
+
+
+#date{
+>>>>>>> feature/styling
   cursor: pointer;
 }
 
 /* list */
 .lists {
   display: flex;
-  background-color: darkorange;
 }
 
 .list {
@@ -92,10 +107,28 @@
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .title {
+=======
+#doingBtn:hover,
+#doneBtn:hover,
+#deleteBtn:hover{
+>>>>>>> feature/styling
   color: aliceblue;
+  background-color: dodgerblue;
 }
 
+<<<<<<< HEAD
 header {
   justify-items: center;
 }
+=======
+.addText:hover{
+  background-color: dodgerblue;
+}
+
+#date:hover{
+  background-color: dodgerblue;
+  color: aliceblue;
+}
+>>>>>>> feature/styling
