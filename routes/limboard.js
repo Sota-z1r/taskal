@@ -2,14 +2,17 @@ var express = require("express");
 var router = express.Router();
 const mysql = require("mysql");
 var moment = require("moment");
-const connection = require("./connection.js");
+const createConnection = require("./pool.js");
 const { checkAuthenticated } = require("../config/auth");
 
 function limboard(sql, hashId) {
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
+    const connectio = await createConnection();
+    connectio.connect();
     connection.query(sql, hashId, function (err, rows, fields) {
       resolve(rows);
     });
+    connectio.end();
   });
 }
 

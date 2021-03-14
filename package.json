@@ -8,6 +8,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "date-utils": "^1.2.21",
     "debug": "~2.6.9",
@@ -15,6 +16,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "install": "^0.13.0",
+    "lru-cache": "^6.0.0",
     "moment": "^2.29.1",
     "morgan": "^1.9.1",
     "mysql": "^2.18.1",
