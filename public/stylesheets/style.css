@@ -9,8 +9,13 @@
 
 }
 
+.content{
+  background-color: aliceblue;
+}
+
 .lists {
   height: 80vh;
+  background-color: aliceblue;
 }
 
 /* add form */
